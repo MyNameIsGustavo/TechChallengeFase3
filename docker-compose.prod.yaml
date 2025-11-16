@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  react-app:
+    build:
+      context: .
+      target: prod
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production

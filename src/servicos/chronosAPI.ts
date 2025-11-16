@@ -1,3 +1,3 @@
 import axios from 'axios';
 
-export const chronosAPI = axios.create({ baseURL: 'https://chronos-latest.onrender.com/' })
+export const chronosAPI = axios.create({ baseURL: process.env.REACT_APP_BACKEND })

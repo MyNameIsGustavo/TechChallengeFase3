@@ -13,20 +13,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repositorio
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Confugura Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
 
-      - name: Install dependencies
+      - name: instala dependências
         run: npm install
 
-      - name: TypeScript check
+      - name: Verifica consistencia TS
         run: npm run type-check
 
-      - name: Build project
+      - name: builda projeto
         run: npm run build
