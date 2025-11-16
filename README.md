@@ -1,46 +1,123 @@
-# Getting Started with Create React App
+# Chronos - Projeto
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Sumário
+1. Membro do Grupo 52 
+2. Definição do Projeto  
+3. Requisitos Técnicos 
+4. Requisitos Funcionais 
+5. Fluxograma  
+6. Prova de conceito
+7. Configuração de ambiente
+8. Estrutura da aplicação 
+9. Processo de Desenvolvimento  
+10. Relatos dos Desafios Superados  
+11. Entregas  
+12. Bônus
+13. Melhorias futuras
+14. Conclusão
 
-## Available Scripts
+## Membro do Grupo 52
+- Gustavo Rocha - RM365401
 
-In the project directory, you can run:
+## Definição do Projeto
+O projeto *Chronos* consiste em uma plataforma de postagem de conteúdo voltada para docentes e alunos, permitindo centralizar informações acadêmicas através possibilitando criar, editar, visualizar e buscar postagens.
 
-### `npm start`
+## Requisitos Técnicos
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- *Desenvolvimento em React*  
+  - Utilizar React para desenvolver a interface gráfica.  
+  - Utilização de hooks e componentes funcionais.  
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- *Estilização e responsividade*  
+  - Utilizar Styled Components ou outro método de estilização.  
+  - Garantir que a aplicação seja responsiva, funcionando bem em dispositivos móveis e desktops.  
 
-### `npm test`
+- *Integração com Back-End*  
+  - Realizar chamadas aos endpoints REST para obter, criar, editar e excluir posts.  
+  - Gerenciar o estado da aplicação com ferramentas como Context API ou Redux (opcional).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- *Documentação*  
+  - Documentação técnica detalhada do front-end no README do repositório, incluindo setup inicial, arquitetura da aplicação e guia de uso. 
 
-### `npm run build`
+## Requisitos Funcionais
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Endpoints da API
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Endpoints de alunos:
+### Endpoints de professores:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Fluxograma Chronos
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Fluxo da aplicação - Chronos.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Pipeline da aplicação - Chronos.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Prova de conceito.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### Requisitos técnicos
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Requisitos funcionais
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Por se tratar de um projeto acadêmico, as senhas e o arquivo .env.prod foram compartilhadas exclusivamente para fins de validação das rotas, testes de autenticação e ajuste para testes em produção. A criação desses três papéis tem como objetivo possibilitar a verificação dos diferentes níveis de acesso e requisitos definidos no sistema. No link a seguir, é possível acessar a documentação da API atráves do Swagger: https://chronos-latest.onrender.com/api-docs/
+
+#### Interfaces gráficas de postagens.
+- Página principal (Lista de posts)  
+  - Exibir uma lista de todos os posts disponíveis.
+  - Cada item da lista deve mostrar o título, autor e uma breve descrição do post.
+  - Incluir um campo de busca para filtrar posts por palavras-chave.
+
+- Página de leitura de post  
+  -  Exibir o conteúdo completo de um post selecionado.
+  - Permitir comentários nos posts (opcional).
+
+- Página de criação de postagens
+  - Formulário para que docentes possam criar postagens.
+  - Campos para título, conteúdo e autor.
+  - Botão para enviar o post ao servidor.
+
+- Página de edição de postagens
+  - Formulário para que os(as) professores(as) possam editar postagens existentes.
+  - Carregar os dados atuais do post para edição.
+  - Botão para salvar as alterações.
+
+- Página administrativa
+  - Exibir uma lista de todas as postagens, com opções para editar e excluir cada post.
+  - Botões para editar e excluir postagens específicas.
+  
+- Autenticação e autorização
+  - Implementar login para professores.
+  - Garantir que apenas usuários autenticados possam acessar as páginas de criação, edição e administração de postagens.
+
+## Configuração de ambiente.
+
+## Estrutura da aplicação
+
+## Processo de Desenvolvimento
+
+### Planejamento das funcionalidades 
+
+### Tecnologias e ferramentas 
+
+## Relatos dos Desafios Superados
+*Gustavo Rocha - RM365401*:
+
+## Entregas
+
+- *Apresentação em vídeo gravado*  
+    - Conforme procedimento validado na fase 01 da pós-tech, o vídeo de apresentação gravado foi disponibilizado na plataforma Youtube para acesso irrestrito dos professores e avaliadores. O vídeo foi gravado com o intuito de apresentar apenas o essencial do projeto para que não ficasse uma apresentação muita longa, sendo complementar com a documentação do projeto. O vídeo pode ser acessado através da seguinte URL: 
+
+- *Código-fonte do projeto*  
+    - O código-fonte e a documentação está disponibilizado na plataforma GitHub no repositório do projeto e pode ser acessado através da URL: 
+
+    - Além disso, também é possível acessar apenas a imagem de produção do Docker do projeto através do DockerHub na seguinte URL: 
+
+- *Arquivos utilizados na apresentação*  
+    - Todos os arquivos utilizados na apresentação do vídeo serão entregues em forma de evidência neste documento "README.md" do projeto. Durante o processo da apresentação foi criado slides de exemplicação do conteúdo e, está evidência, também será entregue e disponibilizada através da seguinte URL: 
+
+## Bônus
+
+## Melhorias futuras
+
+## Conclusão
