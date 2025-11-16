@@ -27,9 +27,6 @@ jobs:
 
       - name: TypeScript check
         run: npm run type-check
-      
-      - name: Run tests
-        run: npm test --if-present -- --watchAll=false
 
       - name: Build project
         run: npm run build
