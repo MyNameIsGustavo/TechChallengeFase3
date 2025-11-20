@@ -16,7 +16,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Trigger Render Deployment
+      - name: Login no Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build e Push da imagem
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/chronosfrontend:latest .
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/chronosfrontend:latest
+
+      - name: Deploy Render
         env:
           RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
           SERVICE_ID: ${{ secrets.RENDER_SERVICE_ID }}

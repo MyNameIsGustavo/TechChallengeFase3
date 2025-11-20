@@ -28,6 +28,20 @@ export class ModeloUsuario {
         }
     }
 
+    async buscarInformacoes(tokenJWT: string) {
+        try {
+            const usuarioPorID = await chronosAPI.get<IUsuario>(`usuarios/buscaInformacoes`, {
+                headers: {
+                    Authorization: `Bearer ${tokenJWT}`
+                }
+            });
+
+            return usuarioPorID.data;
+        } catch (error) {
+            return null;
+        }
+    }
+
     async listarTodosUsuarios(tokenJWT: string) {
         try {
             const usuariosListados = await chronosAPI.get<IUsuario>(`usuarios`, {

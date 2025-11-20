@@ -14,6 +14,10 @@ export class VisaoModeloUsuario {
         return await this.modeloUsuario.listarUsuarioPorId(tokenJWT, id);
     }
 
+    async buscarInformacoes(tokenJWT: string) {
+        return await this.modeloUsuario.buscarInformacoes(tokenJWT);
+    }
+
     async listarTodosUsuarios(tokenJWT: string) {
         return await this.modeloUsuario.listarTodosUsuarios(tokenJWT);
     }
