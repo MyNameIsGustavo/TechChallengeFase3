@@ -3,7 +3,6 @@ import { IUsuario } from "../../interfaces/IUsuario";
 import { chronosAPI } from "../../servicos/chronosAPI";
 
 export class ModeloUsuario {
-    constructor() { }
 
     async login(dadosLogin: ICredenciais): Promise<string | null> {
         try {

@@ -2,7 +2,6 @@ import { IPapelUsuario } from "../../interfaces/IPapelUsuario";
 import { chronosAPI } from "../../servicos/chronosAPI";
 
 export class ModeloPapelUsuario {
-    constructor() { }
 
     async listarTodosPapeisUsuarios(tokenJWT: string) {
         try {

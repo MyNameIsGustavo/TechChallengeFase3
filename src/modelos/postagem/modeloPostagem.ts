@@ -2,7 +2,6 @@ import { IPostagem } from "../../interfaces/IPostagem";
 import { chronosAPI } from "../../servicos/chronosAPI";
 
 export class ModeloPostagem {
-    constructor() { }
 
     async listarTodasPostagens(tokenJWT: string) {
         try {
