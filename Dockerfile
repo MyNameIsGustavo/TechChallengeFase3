@@ -1,14 +1,24 @@
-# Etapa de build
-FROM node:20-alpine AS build
+FROM node:18 AS dev
 
 WORKDIR /app
 
 COPY package*.json ./
+
 RUN npm install
 
-COPY public ./public
-COPY src ./src
-COPY tsconfig.json ./
+COPY . .
+
+EXPOSE 3000
+CMD ["npm", "start"]
+
+FROM node:18 AS build
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install --production
+
+COPY . .
 
 RUN npm run build
 

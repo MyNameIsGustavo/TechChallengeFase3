@@ -71,6 +71,23 @@ O projeto *Chronos* consiste em uma plataforma de postagem de conteúdo voltada 
 ### Fluxo da aplicação - Chronos.
 Esse diagrama detalha o funcionamento interno da aplicação Chronos, demonstrando estruturação da aplicação e fluxo de informação.
 
+Para o desenvolvimento da aplicação Chronos no front-end foi utilizado o design arquitetural MVVM. 
+O padrão MVVM (Model–View–ViewModel) surge como uma evolução do tradicional MVC (Model–View–Controller) para atender melhor aplicações modernas com interfaces mais dinâmicas, principalmente no contexto de desenvolvimento front-end.
+
+Enquanto o MVC concentra no Controller a responsabilidade de controlar fluxo, manipular dados e atualizar a interface, essa separação pode se tornar limitada conforme a aplicação cresce e exige maior interação entre camadas. Já no MVVM, essa responsabilidade é distribuída de maneira mais clara: a View somente exibe a interface e interage com o usuário, enquanto o ViewModel centraliza toda a lógica da tela e comunicação com os dados. Isso reduz o acoplamento entre camadas e melhora a testabilidade do código.
+
+Outra diferença marcante está no data binding. No MVC, o fluxo de atualização entre modelo e interface geralmente é manual. No MVVM, a View reflete automaticamente qualquer alteração do ViewModel, mantendo estados sincronizados de forma mais fluida — ideal para frameworks modernos como React, Angular e Vue.
+
+1. Modelo: Classifica entidades de forma computacional através de linguagem de programação.
+
+2. Serviço: Responsável por centralizar as chamadas de serviços externos que são definidos por padrões de entrada e saída de dados com base em seus respectivos modelos etapa de pilar fundamental para o MVVM. Trata-se de uma camada auxiliar ao padrão de design arquitetural.
+
+3. ViewModel: Etapa centralizadora responsável por realizar as tratativas lógicas de fluxo de dados de uma determinada tela (View).
+ 
+4. View: Fluxo de apresentação de recepção de dados após contato com o usuário através de componentes visuais ou UI.
+
+(Print-screen de uma imagem de exemplo).
+
 ### Pipeline da aplicação - Chronos.
 1. Desenvolvimento local: Cada feature é desenvolvida isoladamente.
 
@@ -88,17 +105,35 @@ Esse diagrama detalha o funcionamento interno da aplicação Chronos, demonstran
     - Cria a imagem Docker e faz push para o DockerHub.
     - Deploy no Render: A aplicação é implantada no serviço Render a partir do repositório no GitHub.
 
+(Print-screen de uma imagem de exemplo).
+
 ## Prova de conceito.
 Conforme os requisitos técnicos e funcionais do documento formalizado do Tech Challenge da fase 3 do curso de Full Stack Development denominado "6FSDT - Fase 3 - Tech challenge" disponibilizado na plataforma da FIAP, a entrega final do projeto engloba todos os requisitos solicitados nesta fase foram entregues, sendo eles citados acima no tópico 3 (Requisitos Técnicos) e 4 (Requisitos Funcionais) do súmario. A seguir, são relacionados cada tópico com sua respectiva entrega em forma de evidência.
 
 ### Requisitos técnicos
 1. *Desenvolvimento em React*:
+  - Utilizar React para desenvolver a interface gráfica.  
+  - Utilização de hooks e componentes funcionais.  
+
+(Print-screen da tela)
 
 2. *Estilização e responsividade*:
+  - Utilizar Styled Components ou outro método de estilização.  
+  - Garantir que a aplicação seja responsiva, funcionando bem em dispositivos móveis e desktops.  
+
+(Print-screen da tela)
 
 3. *Integração com back-end*:
+    - Exibir uma lista de todas as postagens, com opções para editar e excluir cada post.
+    - Botões para editar e excluir postagens específicas.
+
+(Print-screen da tela)
 
 4. *Documentação*:
+  - Documentação técnica detalhada do front-end no README do repositório, incluindo setup inicial, arquitetura da aplicação e guia de uso. 
+
+(Print-screen da tela)
+
 
 ### Requisitos funcionais
 1. *Página principal (Lista de posts)*:
