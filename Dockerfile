@@ -3,7 +3,6 @@ FROM node:18 AS dev
 WORKDIR /app
 
 COPY package*.json ./
-
 RUN npm install
 
 COPY . .
@@ -19,7 +18,6 @@ COPY package*.json ./
 RUN npm install --production
 
 COPY . .
-
 RUN npm run build
 
 FROM nginx:stable-alpine AS prod

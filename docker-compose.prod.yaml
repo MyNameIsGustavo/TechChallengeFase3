@@ -7,5 +7,7 @@ services:
       target: prod
     ports:
       - "80:80"
+    env_file:
+      - .env.production
     environment:
       - NODE_ENV=production
