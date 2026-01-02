@@ -11,13 +11,13 @@ export const PaginaInicial = () => {
     const {
         postagens,
         termo,
+        mostrarModal,
+        postagemSelecionada,
         setTermo,
         pesquisar,
-        selecionarPost,
-        mostrarModal,
+        selecionarPostagemParaEdicao,
         setMostrarModal,
-        postagemSelecionada,
-        setPostagemSelecionada,
+        selecionarPostagemModal
     } = usePaginaInicialViewModel();
 
     return (
@@ -57,25 +57,23 @@ export const PaginaInicial = () => {
                     usuario={dados.autor?.nomeCompleto ?? "Professor"}
                     imagemPost={dados.caminhoImagem || "https://fabricionetoimoveis.com.br/img/sem_foto.png"}
                     descricao={dados.descricao.toLocaleLowerCase()}
-                    curtidas={dados.estatisticas?.totalCurtidas ?? 0}
+                    numCurtidas={dados.estatisticas?.totalCurtidas ?? 0}
+                    numComentarios={dados.estatisticas?.totalComentarios ?? 0}
                     postagemID={dados.id}
                     comentarios={dados.comentarios}
+                    iniciaCurtido={dados.estatisticas.usuarioCurtiu}
                     titulo={dados.titulo}
-                    selecionar={() => selecionarPost(dados.id)}
+                    autorID={dados.autor.id}
+                    selecionar={() => selecionarPostagemParaEdicao(dados.id)}
                     abrirModal={() => {
-                        setPostagemSelecionada(dados);
+                        selecionarPostagemModal(dados.id);
                         setMostrarModal(true);
                     }}
                 />
             ))}
 
             {mostrarModal && postagemSelecionada && (
-                <ModalGenerico
-                    mostrar={mostrarModal}
-                    fechar={() => { setMostrarModal(false); setPostagemSelecionada(null); }}
-                    titulo="Detalhes da postagem"
-                    tamanho="lg"
-                >
+                <ModalGenerico mostrar={mostrarModal} fechar={() => { setMostrarModal(false); }} titulo="Detalhes da postagem" tamanho="lg">
                     <PostagemDetalhada postagem={postagemSelecionada} />
                 </ModalGenerico>
             )}

@@ -3,9 +3,11 @@ import { IUsuario, IUsuarioAlteracao } from "../../modelos/IUsuario";
 import { useAutenticacao } from "../../contextos/useAutenticacao";
 import { useState } from "react";
 import { UsuarioService } from "../../servicos/modeloUsuario";
+import { useLocation } from "react-router-dom";
 
 export const useUsuarioDetalheViewModel = () => {
     const usuarioServico = new UsuarioService();
+
     const { tokenJWT, informacoesUsuario, logout } = useAutenticacao();
     const { register, handleSubmit, formState: { errors, isSubmitting }, setValue } = useForm<IUsuario>({
         defaultValues: {

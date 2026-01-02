@@ -56,7 +56,6 @@ export class DashboardService {
                 `${this.baseRoute}${comentariosPorPostagem}`,
                 this.authHeader(tokenJWT)
             );
-            console.log(data);
             return data;
         } catch {
             return null;

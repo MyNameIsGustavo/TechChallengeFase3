@@ -115,8 +115,10 @@ export const UsuarioDetalhe = () => {
                                 isInvalid={!!errors.senha}
                                 {...register("senha", {
                                     validate: (value) => {
-
-                                        if (value.length < 6) return "Mínimo de 6 caracteres";
+                                        if (!value || value.length === 0) return true;
+                                        if (value.length < 6) {
+                                            return "Mínimo de 6 caracteres";
+                                        }
                                         return true;
                                     }
                                 })}

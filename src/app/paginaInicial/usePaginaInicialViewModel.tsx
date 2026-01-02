@@ -36,7 +36,7 @@ export const usePaginaInicialViewModel = () => {
         }
     };
 
-    const selecionarPost = async (id: number) => {
+    const selecionarPostagemParaEdicao = async (id: number) => {
         if (!tokenJWT) return;
         try {
             const postagem = await postagemServico.listarPorId(tokenJWT, id);
@@ -48,18 +48,29 @@ export const usePaginaInicialViewModel = () => {
         }
     }
 
-    useEffect(() => { if (tokenJWT) buscarPostagens() }, [tokenJWT])
+     const selecionarPostagemModal = async (id: number) => {
+        if (!tokenJWT) return;
+        try {
+            const postagem = await postagemServico.listarPorId(tokenJWT, id);
+           setPostagemSelecionada(postagem)
+        } catch (error) {
+            console.error("Erro ao buscar usuários:", error);
+        }
+    }
+
+    useEffect(() => { if (tokenJWT) buscarPostagens() }, [tokenJWT, mostrarModal])
 
     return {
         postagens,
         termo,
         setTermo,
         pesquisar,
-        selecionarPost,
+        selecionarPostagemParaEdicao,
         mostrarModal,
         setMostrarModal,
         postagemSelecionada,
         setPostagemSelecionada,
-        informacoesUsuario
+        informacoesUsuario,
+        selecionarPostagemModal
     }
 }

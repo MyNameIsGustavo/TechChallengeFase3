@@ -20,7 +20,6 @@ export class ServicoPostagem {
                 this.baseRoute,
                 this.authHeader(tokenJWT)
             );
-            console.log(resposta.data);
             return resposta.data;
         } catch {
             return null;

@@ -11,21 +11,25 @@ import {
 } from "react-icons/bs";
 import { useCartaoViewModel } from "./useCartaoViewModel";
 import { IComentario } from "../../modelos/IComentario";
+import { PapeisUsuario } from "../../enums/EPapeisUsuarios";
 
 interface CartaoPostagemProps {
     usuario: string;
     fotoUsuario: string;
     imagemPost: string;
     descricao: string;
-    curtidas?: number;
+    numCurtidas?: number;
+    numComentarios?: number;
     titulo: string;
     postagemID: number;
     comentarios: IComentario[];
+    iniciaCurtido: boolean;
+    autorID: number;
     selecionar: () => void;
     abrirModal: () => void;
 }
 
-export const Cartao = ({ usuario, fotoUsuario, imagemPost, descricao, curtidas = 0, titulo, postagemID, comentarios, selecionar, abrirModal, }: CartaoPostagemProps) => {
+export const Cartao = ({ usuario, fotoUsuario, imagemPost, descricao, numCurtidas = 0, numComentarios = 0, titulo, postagemID, comentarios, iniciaCurtido,  autorID, selecionar, abrirModal, }: CartaoPostagemProps) => {
     const IconeCoracao = BsHeart as unknown as React.FC<{ size?: number }>;
     const IconeCoracaoFill = BsHeartFill as unknown as React.FC<{ size?: number }>;
     const IconeComentario = BsChat as unknown as React.FC<{ size?: number }>;
@@ -34,20 +38,20 @@ export const Cartao = ({ usuario, fotoUsuario, imagemPost, descricao, curtidas =
     const IconeLixeira = BsTrash as unknown as React.FC<{ size?: number }>;
     const IconeEditar = BsPencil as unknown as React.FC<{ size?: number }>;
 
-    const { likes, listaComentarios,
+    const {
+        likes,
+        listaComentarios,
+        isCurtido,
+        informacoesUsuario,
         curtirPostagem,
         descurtirPostagem,
         comentarPostagem,
-        informacoesUsuario,
         register,
         handleSubmit,
         setValue,
-        isCurtido
-    } = useCartaoViewModel({
-        curtidas,
-        comentarios,
-        postagemID
-    });
+        setIsCurtido,
+        descomentarPostagem
+    } = useCartaoViewModel({ numCurtidas, numComentarios,  comentarios, postagemID, iniciaCurtido });
 
     return (
         <Card
@@ -83,15 +87,19 @@ export const Cartao = ({ usuario, fotoUsuario, imagemPost, descricao, curtidas =
                             onClick={(e) => {
                                 e.stopPropagation();
                                 isCurtido ? descurtirPostagem() : curtirPostagem();
+                                setIsCurtido(!isCurtido);
                             }}
                         >
-                            {isCurtido ? <IconeCoracaoFill size={23} /> : <IconeCoracao size={23} />}
+                            {isCurtido
+                                ? <IconeCoracaoFill size={23} />
+                                : <IconeCoracao size={23} />
+                            }
                         </Button>
 
                         <Button variant="link" className="p-0 me-2 border-0 text-dark" aria-label="Comentar"><IconeComentario size={25} /></Button>
                     </div>
 
-                    {informacoesUsuario?.papelUsuarioID !== 2 && (<Button variant="link" className="p-0 text-dark" aria-label="Editar" onClick={selecionar}><IconeEditar size={24} /> </Button>)}
+                    {informacoesUsuario?.papelUsuarioID !== PapeisUsuario.ESTUDANTE && informacoesUsuario?.id === autorID && (<Button variant="link" className="p-0 text-dark" aria-label="Editar" onClick={selecionar}><IconeEditar size={24} /> </Button>)}
                 </div>
 
                 <strong className="d-block mb-1">{likes} Curtidas</strong>
@@ -101,7 +109,7 @@ export const Cartao = ({ usuario, fotoUsuario, imagemPost, descricao, curtidas =
                     {descricao.length > 80 ? (descricao.length > 80 ? "..." : "") : descricao}
                 </p>
 
-                { /*<p className="mb-2" style={{ fontSize: "0.95rem" }}>
+                {<p className="mb-2" style={{ fontSize: "0.95rem" }}>
                     {listaComentarios.length > 0 ? (
                         listaComentarios.slice(0, 2).map((comentario) => (
                             <span key={comentario.id}>
@@ -120,23 +128,8 @@ export const Cartao = ({ usuario, fotoUsuario, imagemPost, descricao, curtidas =
                                                 <Button
                                                     variant="none"
                                                     className="p-0"
-                                                    onClick={async () => {
-                                                        const removido =
-                                                            await descomentar(
-                                                                postagemID,
-                                                                comentario.id
-                                                            );
-                                                        if (removido) {
-                                                            setListaComentarios(
-                                                                (prev) =>
-                                                                    prev.filter(
-                                                                        (c) =>
-                                                                            c.id !==
-                                                                            comentario.id
-                                                                    )
-                                                            );
-                                                        }
-                                                    }}
+                                                    onClick={() => descomentarPostagem(comentario.id)}
+
                                                 >
                                                     <IconeLixeira size={18} />
                                                 </Button>
@@ -148,7 +141,7 @@ export const Cartao = ({ usuario, fotoUsuario, imagemPost, descricao, curtidas =
                     ) : (
                         <em>Nenhum comentário ainda.</em>
                     )}
-                </p> */}
+                </p>}
 
                 <Form onSubmit={handleSubmit(data => comentarPostagem(data.conteudo))}>
                     <div className="d-flex align-items-center gap-2">

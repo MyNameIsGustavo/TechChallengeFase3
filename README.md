@@ -13,7 +13,6 @@
 10. Relatos dos Desafios Superados  
 11. Entregas  
 12. Bônus
-13. Melhorias futuras
 14. Conclusão
 
 ## Membro do Grupo 52
@@ -323,6 +322,12 @@ Utilizando o back-end desenvolvido previamente, esta etapa concentrou-se na cria
 
 As tarefas foram organizadas com base nas experiências adquiridas nos projetos das Fases 01 e 02, iniciando pela estruturação da documentação, definição da arquitetura, construção da aplicação e, somente depois, pelo desenvolvimento do código-fonte.
 
+O projeto foi construído tanto para rodar localmente para execução de testes e validações de novas features quanto em produção através do Render para a disponibilização da aplicação para usuários. Destaco ainda que o Render possui planos de serviços gratuitos por curtos períodos de tempo e foi considerado para este projeto que a aplicação suprisse esta linha de serviços. Este sem dúvida, foi o ponto crucial da etapa de tempo de desenvolvimento do projeto. O banco de dados PostgreSQL utilizado, por exemplo, ficará disponível em produção até o dia {DATA} conforme alerta exibido na plataforma e anexado neste documento como evidência.
+
+(Print-screen do render)
+
+A frequência de esforço empregado para o desenvolvimento das features foram diárias e contínuas para que fosse honrado, primeiramente, os requisitos técnicos e funcionais e posteriormente adicionado novas tecnologias considerando ainda as questões do prazo de desenvolvimento citado acima.
+
 ### Tecnologias e ferramentas 
 
 Todas as tecnologias, ferramentas e padrões de arquitetura utilizados neste projeto foram selecionados com base no conteúdo abordado durante a Fase 03 do curso de Full Stack Development – Pós-Tech. O objetivo foi garantir coerência com os aprendizados teóricos, além de possibilitar a absorção prática e a consolidação do conhecimento adquirido ao longo da fase.
@@ -338,7 +343,7 @@ Todas as tecnologias, ferramentas e padrões de arquitetura utilizados neste pro
  - Docker: Utilizado para containerizar a aplicação, garantindo ambientes padronizados e facilitando o deploy em produção.
 
 ## Relatos dos Desafios Superados
-*Gustavo Rocha - RM365401*:
+*Gustavo Rocha - RM365401*: Particularmente, já havia tido contato com algumas tecnologias utilizadas no projeto, principalmente, com o React e Typescript. Entretanto, ainda não havia tido a oportunidade de utilizar o Docker, CI/CD no GitHub Actions para aplicações front-end e o Render para realizar o deploy de uma aplicação React. Portanto, neste sentido, esta experiência foi enriquecedora para minha trajetória de desenvolvimento na área de Full Stack.
 
 ## Entregas
 
@@ -346,15 +351,46 @@ Todas as tecnologias, ferramentas e padrões de arquitetura utilizados neste pro
     - Conforme procedimento validado na fase 01 da pós-tech, o vídeo de apresentação gravado foi disponibilizado na plataforma Youtube para acesso irrestrito dos professores e avaliadores. O vídeo foi gravado com o intuito de apresentar apenas o essencial do projeto para que não ficasse uma apresentação muita longa, sendo complementar com a documentação do projeto. O vídeo pode ser acessado através da seguinte URL: 
 
 - *Código-fonte do projeto*  
-    - O código-fonte e a documentação está disponibilizado na plataforma GitHub no repositório do projeto e pode ser acessado através da URL: 
+    - O código-fonte e a documentação está disponibilizado na plataforma GitHub no repositório do projeto e pode ser acessado através da URL: https://github.com/MyNameIsGustavo/TechChallengeFase3
 
-    - Além disso, também é possível acessar apenas a imagem de produção do Docker do projeto através do DockerHub na seguinte URL: 
+    - Além disso, também é possível acessar apenas a imagem de produção do Docker do projeto através do DockerHub na seguinte URL: https://hub.docker.com/repository/docker/grmaia/chronosfrontend/general
 
 - *Arquivos utilizados na apresentação*  
     - Todos os arquivos utilizados na apresentação do vídeo serão entregues em forma de evidência neste documento "README.md" do projeto. Durante o processo da apresentação foi criado slides de exemplicação do conteúdo e, está evidência, também será entregue e disponibilizada através da seguinte URL: 
 
 ## Bônus
+O Tech Challenge desta fase foi identilizado, primeiramente, para entrega dos requisitos obrigatórios da fase. Posteriormente, foi incrementado uma nova etapa para além de entregar todas os requisitos técnicos e funcionais solicitados na terceira etapa da pós-tech da FIAP, também foi entregue features adicionais que já haviam sido complementadas nas fases anteriores. Nesta etapa, foram entregues mais 11 endpoints, sendo eles:
 
-## Melhorias futuras
+  - Método HTTP (PUT): https://chronos-latest.onrender.com/usuarios 
+    - Alteração de informações pessoais do próprio usuário enquanto estiver autenticado. 
+  - Método HTTP (POST): https://chronos-latest.onrender.com/postagem/{PostagemID}/curtida 
+    - Cadastro de curtida para uma postagem.
+  - Método HTTP (DELETE): https://chronos-latest.onrender.com/postagem/{PostagemID}/curtida 
+    - Deleção de curtida para uma postagem.
+  - Método HTTP (POST): https://chronos-latest.onrender.com/postagem/{PostagemID}/comentario
+    - Cadastro de comentário para uma postagem.
+  - Método HTTP (DELETE): https://chronos-latest.onrender.com/postagem/{PostagemID}/comentario
+    - Deleção de comentário para uma postagem.
+  - Método HTTP (GET): https://chronos-latest.onrender.com/postagem/{PostagemID}/comentario/{ComentarioID}
+    - Seleção de um comentário com base em uma postagem.
+  - Método HTTP (GET): https://chronos-latest.onrender.com/dashboard/usuarioPorPapel
+    - Seleção de usuário com base em suas roles no sistema.
+  - Método HTTP (GET): https://chronos-latest.onrender.com/dashboard/usuarioPorPostagem
+    - Seleção de relação de usuário por criação de postagem.
+  - Método HTTP (GET): https://chronos-latest.onrender.com/dashboard/curtidaPorPostagem
+    - Seleção de relação de curtidas por postagem.
+  - Método HTTP (GET): https://chronos-latest.onrender.com/dashboard/comentarioPorPostagem
+    - Seleção de relação de comentários por postagem.
+  - Método HTTP (GET): https://chronos-latest.onrender.com/dashboard/postagemPorMes
+    - Seleção de relação de postagem por mês.
+
+  Todos estes endpoints foram desenvolvidos ainda nesta fase para o incremento do projeto tanto no ambiente de back-end quanto no front-end.
 
 ## Conclusão
+A terceria fase da pós-tech de Full Stack Development representou um desafio relevante para mim devido a complexidade de lidar com algumas novas tecnologias, assimilar o conhecimento das aulas e ainda honrar com o prazo de desenvolvimento do projeto.
+
+A estrutura da aplicação foi planejada com foco em boas práticas de arquitetura de software, garantindo uma separação clara entre camadas e disponibilizando uma experiência funcional e objetiva para o usuário utilizar no cotidiano.
+
+Apesar das dificuldades, todos os requisitos técnicos foram atendidos com sucesso. Fui além do escopo obrigatório com o foco em construir uma solução completa, com atenção à performance, qualidade do código e manutenção futura no possível viável.
+
+Encerrar esta etapa com uma entrega robusta e tecnicamente madura é motivo de satisfação profissional.

@@ -2,18 +2,21 @@ import { useForm } from "react-hook-form";
 import { useAutenticacao } from "../../contextos/useAutenticacao";
 import { ComentariosService } from "../../servicos/modeloComentario";
 import { CurtidasService } from "../../servicos/modeloCurtidas";
-import { IComentario } from "../../interfaces/IComentario";
+import { IComentario } from "../../modelos/IComentario";
 import { useState } from "react";
 
-interface UseCartaoParams { curtidas: number; comentarios: IComentario[]; postagemID: number; }
+interface UseCartaoParams { numCurtidas: number; numComentarios: number; comentarios: IComentario[]; postagemID: number; iniciaCurtido: boolean; }
 
-export const useCartaoViewModel = ({ curtidas, comentarios, postagemID }: UseCartaoParams) => {
+export const useCartaoViewModel = ({ numCurtidas, numComentarios, comentarios, postagemID, iniciaCurtido }: UseCartaoParams) => {
     const { register, handleSubmit, formState: { errors }, setValue } = useForm<IComentario>();
     const { tokenJWT, informacoesUsuario } = useAutenticacao();
 
-    const [isCurtido, setIsCurtido] = useState(false);
-    const [likes, setLikes] = useState(curtidas);
+    const [isCurtido, setIsCurtido] = useState(iniciaCurtido);
     const [listaComentarios, setListaComentarios] = useState<IComentario[]>(comentarios);
+
+
+    const [likes, setLikes] = useState(numCurtidas);
+    const [auxComentario, setAuxComentario] = useState(numComentarios);
 
     const curtidaService = new CurtidasService();
     const comentarioService = new ComentariosService();
@@ -46,10 +49,22 @@ export const useCartaoViewModel = ({ curtidas, comentarios, postagemID }: UseCar
         if (novoComentario) {
             setListaComentarios(prev => [novoComentario, ...prev]);
             setValue("conteudo", "");
+            setAuxComentario(prev => prev + 1);
         }
     };
 
-    
+    const descomentarPostagem = async (comentarioID: number) => {
+        if (!tokenJWT) return;
+
+        const sucesso = await comentarioService.deletar(tokenJWT, postagemID, comentarioID);
+
+        if (sucesso) {
+            setListaComentarios(prev =>
+                prev.filter(comentario => comentario.id !== comentarioID)
+            );
+            setAuxComentario(prev => Math.max(prev - 1, 0))
+        }
+    };
 
     return {
         curtirPostagem,
@@ -64,5 +79,6 @@ export const useCartaoViewModel = ({ curtidas, comentarios, postagemID }: UseCar
         informacoesUsuario,
         likes,
         listaComentarios,
+        descomentarPostagem
     }
 }

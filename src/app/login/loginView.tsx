@@ -1,9 +1,10 @@
 import { Form, Button, Container, Row, Col, Image } from "react-bootstrap";
 import { Controller } from "react-hook-form";
 import { useControllerLogin } from "./useLoginViewModel";
+import { Alerta } from "../../componentes/alerta/alerta";
 
 export const Login = () => {
-    const { control, handleSubmit, errors, login } = useControllerLogin();
+    const { control, handleSubmit, errors, login, alerta, setAlerta } = useControllerLogin();
 
     return (
         <Container fluid className="vh-100">
@@ -90,6 +91,12 @@ export const Login = () => {
                     </div>
                 </Col>
             </Row>
+            <Alerta
+                exibe={alerta.exibe}
+                onClose={() => setAlerta({ ...alerta, exibe: false })}
+                titulo={alerta.titulo}
+                mensagem={alerta.mensagem}
+            />
         </Container>
     );
 };

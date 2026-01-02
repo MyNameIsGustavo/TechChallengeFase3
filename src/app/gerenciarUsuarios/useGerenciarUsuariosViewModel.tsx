@@ -30,7 +30,6 @@ export const useGerenciarUsuariosViewModel = () => {
         if (!tokenJWT) return;
         try {
             const informacoesUsuarios = await usuarioServico.listarTodos(tokenJWT);
-            console.log(informacoesUsuarios)
             if (informacoesUsuarios && Array.isArray(informacoesUsuarios)) {
                 const usuariosFormatados = informacoesUsuarios.map(usuario => ({
                     ...usuario,
