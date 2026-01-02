@@ -4,7 +4,7 @@ import { useFormularioUsuarioViewModel } from "./useFormularioViewModel";
 import { Alerta } from "../../componentes/alerta/alerta";
 
 export const FormularioUsuario = () => {
-    const { register, handleSubmit, errors, isSubmitting, abrirConfirmacaoSalvar, alerta, setAlerta, ehEdicao } = useFormularioUsuarioViewModel();
+    const { register, handleSubmit, errors, isSubmitting, abrirConfirmacaoSalvar, alerta, setAlerta, ehEdicao, editarObjeto } = useFormularioUsuarioViewModel();
 
     return (
         <Container fluid>
@@ -96,7 +96,18 @@ export const FormularioUsuario = () => {
 
                     <Row className="mb-3">
                         <Col md={6}>
-                            <Form.Group controlId="senha">
+                            <Form.Group className="mb-4">
+                                <Form.Label>Imagem do usuário:</Form.Label>
+                                <Form.Control
+                                    type="file"
+                                    accept="image/*"
+                                    {...register("caminhoImagem")}
+                                />
+                                {errors.caminhoImagem && <Form.Text className="text-danger">{errors.caminhoImagem.message}</Form.Text>}
+                            </Form.Group>
+                        </Col>
+                        <Col md={6}>
+                        <Form.Group controlId="senha">
                                 <Form.Label>Senha:</Form.Label>
                                 <Form.Control
                                     type="password"

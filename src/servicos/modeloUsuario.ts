@@ -1,5 +1,5 @@
 import { ICredenciais } from "../interfaces/ICredenciais";
-import { IUsuario, IUsuarioEdicao } from "../modelos/IUsuario";
+import { IUsuario, IUsuarioAlteracao, IUsuarioEdicao } from "../modelos/IUsuario";
 import { chronosAPI } from "../conexoes/chronosAPI";
 
 export class UsuarioService {
@@ -76,9 +76,18 @@ export class UsuarioService {
 
     async cadastrar(tokenJWT: string, usuario: IUsuario) {
         try {
+            const formData = new FormData();
+            formData.append("nomeCompleto", usuario.nomeCompleto);
+            formData.append("email", usuario.email);
+            formData.append("telefone", usuario.telefone);
+            formData.append("senha", usuario.senha);
+            formData.append("papelUsuarioID", usuario.papelUsuarioID.toString());
+
+            if (usuario.caminhoImagem && usuario.caminhoImagem.length > 0) formData.append("caminhoImagem", usuario.caminhoImagem[0]);
+
             const { data } = await chronosAPI.post<IUsuario>(
                 `${this.baseRoute}`,
-                usuario,
+                formData,
                 this.authHeader(tokenJWT)
             );
             return data;
@@ -89,13 +98,38 @@ export class UsuarioService {
 
     async editar(tokenJWT: string, usuario: IUsuarioEdicao, id: number) {
         try {
+            const formData = new FormData();
+            formData.append("nomeCompleto", usuario.nomeCompleto);
+            formData.append("email", usuario.email);
+            formData.append("telefone", usuario.telefone);
+            if (usuario.senha && usuario.senha.length > 0) formData.append("senha", usuario.senha);
+            formData.append("papelUsuarioID", usuario.papelUsuarioID.toString());
+            if (usuario.caminhoImagem && usuario.caminhoImagem.length > 0) formData.append("caminhoImagem", usuario.caminhoImagem[0]);
+
             const { data } = await chronosAPI.put<IUsuario>(
                 `${this.baseRoute}/${id}`,
-                usuario,
+                formData,
                 this.authHeader(tokenJWT)
             );
             return data;
-        } catch {
+        } catch (error) {
+            console.error("Erro ao editar usuário:", error);
+            return null;
+        }
+    }
+
+    async alterar(tokenJWT: string, usuario: IUsuarioAlteracao) {
+        try {
+            const formData = new FormData();
+            formData.append("nomeCompleto", usuario.nomeCompleto);
+            formData.append("telefone", usuario.telefone);
+            if (usuario.senha && usuario.senha.length > 0) formData.append("senha", usuario.senha);
+            if (usuario.caminhoImagem && usuario.caminhoImagem.length > 0) formData.append("caminhoImagem", usuario.caminhoImagem[0]);
+
+            const { data } = await chronosAPI.put<IUsuario>(`${this.baseRoute}`, formData, this.authHeader(tokenJWT));
+            return data;
+        } catch (error) {
+            console.error("Erro ao editar usuário:", error);
             return null;
         }
     }

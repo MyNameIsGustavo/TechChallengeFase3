@@ -7,6 +7,7 @@ import { GerenciarPostagens } from "../app/gerenciarPostagens/gerenciarPostagens
 import { useEffect } from "react";
 import { FormularioPostagem } from "../app/gerenciarPostagens/formularioPostagemView";
 import { FormularioUsuario } from "../app/gerenciarUsuarios/formularioUsuarioView";
+import { Dashboard } from "../app/dashboard/dashboardView";
 
 const rotaConfig = [
     { path: '/', element: <Login />, title: 'Chronos | Login' },
@@ -15,6 +16,8 @@ const rotaConfig = [
     { path: '/gerenciarPostagens', element: <GerenciarPostagens />, title: 'Chronos | Gerenciar postagens' },
     { path: '/formularioPostagem', element: <FormularioPostagem />, title: 'Chronos | Formulário postagem' },
     { path: '/formularioUsuario', element: <FormularioUsuario />, title: 'Chronos | Formulário usuário' },
+    { path: '/dashboard', element: <Dashboard />, title: 'Chronos | Dashboard' },
+
 ];
 
 const RotasInternas = () => {

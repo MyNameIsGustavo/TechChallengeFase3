@@ -17,7 +17,7 @@ export const PaginaInicial = () => {
         mostrarModal,
         setMostrarModal,
         postagemSelecionada,
-        setPostagemSelecionada, informacoesUsuario
+        setPostagemSelecionada,
     } = usePaginaInicialViewModel();
 
     return (
@@ -49,15 +49,18 @@ export const PaginaInicial = () => {
             {postagens.map((dados) => (
                 <Cartao
                     key={dados.id}
+                    fotoUsuario={
+                        typeof dados.autor.caminhoImagem === "string"
+                            ? dados.autor.caminhoImagem
+                            : "https://img.freepik.com/vetores-premium/icone-de-perfil-de-usuario-em-estilo-plano-ilustracao-em-vetor-avatar-membro-em-fundo-isolado-conceito-de-negocio-de-sinal-de-permissao-humana_157943-15752.jpg?semt=ais_hybrid&w=740&q=80"
+                    }
                     usuario={dados.autor?.nomeCompleto ?? "Professor"}
-                    fotoUsuario="https://img.freepik.com/vetores-premium/icone-de-perfil-de-usuario-em-estilo-plano-ilustracao-em-vetor-avatar-membro-em-fundo-isolado-conceito-de-negocio-de-sinal-de-permissao-humana_157943-15752.jpg?semt=ais_hybrid&w=740&q=80"
                     imagemPost={dados.caminhoImagem || "https://fabricionetoimoveis.com.br/img/sem_foto.png"}
-                    descricao={dados.descricao}
-                    likesInicial={dados.estatisticas?.totalCurtidas ?? 0}
+                    descricao={dados.descricao.toLocaleLowerCase()}
+                    curtidas={dados.estatisticas?.totalCurtidas ?? 0}
                     postagemID={dados.id}
                     comentarios={dados.comentarios}
                     titulo={dados.titulo}
-                     curtidas={dados.curtidas}
                     selecionar={() => selecionarPost(dados.id)}
                     abrirModal={() => {
                         setPostagemSelecionada(dados);

@@ -49,7 +49,6 @@ export const useFormularioUsuarioViewModel = () => {
 
         const dadosParaEnviar = { ...dadosFormulario };
         if (!dadosParaEnviar.senha || dadosParaEnviar.senha.trim() === "") {delete dadosParaEnviar.senha;}
-        
         try {
             if (await usuarioServico.editar(tokenJWT, dadosParaEnviar, editarObjeto.id))vaiParaGerenciarUsuarios();
         } catch {
@@ -74,6 +73,7 @@ export const useFormularioUsuarioViewModel = () => {
         abrirConfirmacaoSalvar,
         alerta,
         setAlerta,
-        ehEdicao
+        ehEdicao,
+        editarObjeto
     }
 }

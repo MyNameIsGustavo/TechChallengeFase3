@@ -17,28 +17,15 @@ interface CartaoPostagemProps {
     fotoUsuario: string;
     imagemPost: string;
     descricao: string;
-    likesInicial?: number;
+    curtidas?: number;
     titulo: string;
     postagemID: number;
     comentarios: IComentario[];
-    curtidas?: { usuarioId: number }[];
     selecionar: () => void;
     abrirModal: () => void;
 }
 
-export const Cartao = ({
-    usuario,
-    fotoUsuario,
-    imagemPost,
-    descricao,
-    likesInicial = 0,
-    titulo,
-    postagemID,
-    comentarios,
-    curtidas,
-    selecionar,
-    abrirModal,
-}: CartaoPostagemProps) => {
+export const Cartao = ({ usuario, fotoUsuario, imagemPost, descricao, curtidas = 0, titulo, postagemID, comentarios, selecionar, abrirModal, }: CartaoPostagemProps) => {
     const IconeCoracao = BsHeart as unknown as React.FC<{ size?: number }>;
     const IconeCoracaoFill = BsHeartFill as unknown as React.FC<{ size?: number }>;
     const IconeComentario = BsChat as unknown as React.FC<{ size?: number }>;
@@ -47,41 +34,25 @@ export const Cartao = ({
     const IconeLixeira = BsTrash as unknown as React.FC<{ size?: number }>;
     const IconeEditar = BsPencil as unknown as React.FC<{ size?: number }>;
 
-    const [curtido, setCurtido] = useState(false);
-    const [likes, setLikes] = useState(likesInicial);
-    const [expandirDescricao, setExpandirDescricao] = useState(false);
-    const [listaComentarios, setListaComentarios] = useState<IComentario[]>(comentarios);
-
-    const {
-        curtir,
-        descurtir,
-        comentar,
-        descomentar,
+    const { likes, listaComentarios,
+        curtirPostagem,
+        descurtirPostagem,
+        comentarPostagem,
         informacoesUsuario,
         register,
         handleSubmit,
         setValue,
-    } = useCartaoViewModel();
-
-    useEffect(() => {
-        if (!informacoesUsuario || !curtidas) return;
-
-        const jaCurtiu = curtidas.some(
-            (c) => c.usuarioId === informacoesUsuario.id
-        );
-
-        setCurtido(jaCurtiu);
-    }, [curtidas, informacoesUsuario]);
+        isCurtido
+    } = useCartaoViewModel({
+        curtidas,
+        comentarios,
+        postagemID
+    });
 
     return (
         <Card
             className="shadow-sm mb-4 mx-auto w-100"
-            style={{
-                borderRadius: 8,
-                maxWidth: "400px",
-                cursor: "pointer",
-                transition: "transform 0.2s ease, box-shadow 0.2s ease",
-            }}
+            style={{ borderRadius: 8, maxWidth: "400px", cursor: "pointer", transition: "transform 0.2s ease, box-shadow 0.2s ease", }}
             onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "translateY(-5px)";
                 e.currentTarget.style.boxShadow =
@@ -93,99 +64,44 @@ export const Cartao = ({
                     "0 4px 12px rgba(0,0,0,0.1)";
             }}
         >
-            <Card.Header
-                className="d-flex align-items-center bg-white border-0"
-                onClick={abrirModal}
-            >
-                <img
-                    src={fotoUsuario}
-                    alt="Perfil"
-                    width={60}
-                    height={60}
-                    style={{ borderRadius: "50%", objectFit: "cover" }}
-                />
-                <div className="d-flex flex-column flex-grow-1 ms-2">
-                    <strong>{usuario}</strong>
-                    <small className="text-muted">{titulo}</small>
+            <Card.Header className="d-flex align-items-center bg-white border-0" onClick={abrirModal}>
+                <div style={{ width: 50, height: 50, borderRadius: "50%", overflow: "hidden", display: "inline-block" }}>
+                    <img src={fotoUsuario} alt="Perfil" width={60} height={60} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
                 </div>
+                <div className="d-flex flex-column flex-grow-1 ms-2"><strong>{usuario}</strong><small className="text-muted">{titulo}</small></div>
                 <IconeBotoes />
             </Card.Header>
 
             <Card.Img src={imagemPost} alt="Post" style={{ maxHeight: "300px", objectFit: "cover" }} />
 
             <Card.Body>
-                {/* AÇÕES */}
                 <div className="d-flex align-items-center justify-content-between mb-2">
                     <div>
                         <Button
                             variant="link"
-                            className={`p-0 me-2 border-0 ${curtido ? "text-danger" : "text-dark"
-                                }`}
+                            className={`p-0 me-2 border-0 ${isCurtido ? "text-danger" : "text-dark"}`}
                             onClick={(e) => {
                                 e.stopPropagation();
-
-                                if (curtido) {
-                                    descurtir(postagemID);
-                                    setCurtido(false);
-                                    setLikes((prev) => Math.max(prev - 1, 0));
-                                } else {
-                                    curtir(postagemID);
-                                    setCurtido(true);
-                                    setLikes((prev) => prev + 1);
-                                }
+                                isCurtido ? descurtirPostagem() : curtirPostagem();
                             }}
-                            aria-label="Curtir"
                         >
-                            {curtido ? (
-                                <IconeCoracaoFill size={23} />
-                            ) : (
-                                <IconeCoracao size={23} />
-                            )}
+                            {isCurtido ? <IconeCoracaoFill size={23} /> : <IconeCoracao size={23} />}
                         </Button>
 
-                        <Button
-                            variant="link"
-                            className="p-0 me-2 border-0 text-dark"
-                            aria-label="Comentar"
-                        >
-                            <IconeComentario size={25} />
-                        </Button>
+                        <Button variant="link" className="p-0 me-2 border-0 text-dark" aria-label="Comentar"><IconeComentario size={25} /></Button>
                     </div>
 
-                    {
-                        informacoesUsuario?.papelUsuarioID !== 2 && (<Button
-                            variant="link"
-                            className="p-0 text-dark"
-                            aria-label="Editar"
-                            onClick={selecionar}
-                        >
-                            <IconeEditar size={24} />
-                        </Button>)
-                    }
+                    {informacoesUsuario?.papelUsuarioID !== 2 && (<Button variant="link" className="p-0 text-dark" aria-label="Editar" onClick={selecionar}><IconeEditar size={24} /> </Button>)}
                 </div>
 
                 <strong className="d-block mb-1">{likes} Curtidas</strong>
 
                 <p className="mb-2" style={{ fontSize: "0.95rem" }}>
                     <strong>{usuario}</strong>:{" "}
-                    {expandirDescricao
-                        ? descricao
-                        : descricao.slice(0, 80) +
-                        (descricao.length > 80 ? "..." : "")}
-                    {descricao.length > 80 && (
-                        <button
-                            className="btn btn-link p-0 ms-1"
-                            style={{ fontSize: "0.85rem" }}
-                            onClick={() =>
-                                setExpandirDescricao(!expandirDescricao)
-                            }
-                        >
-                            {expandirDescricao ? "ver menos" : "ver mais"}
-                        </button>
-                    )}
+                    {descricao.length > 80 ? (descricao.length > 80 ? "..." : "") : descricao}
                 </p>
 
-                <p className="mb-2" style={{ fontSize: "0.95rem" }}>
+                { /*<p className="mb-2" style={{ fontSize: "0.95rem" }}>
                     {listaComentarios.length > 0 ? (
                         listaComentarios.slice(0, 2).map((comentario) => (
                             <span key={comentario.id}>
@@ -232,23 +148,9 @@ export const Cartao = ({
                     ) : (
                         <em>Nenhum comentário ainda.</em>
                     )}
-                </p>
+                </p> */}
 
-                <Form
-                    onSubmit={handleSubmit(async (data) => {
-                        const novoComentario = await comentar(
-                            postagemID,
-                            data.conteudo
-                        );
-                        if (novoComentario) {
-                            setListaComentarios((prev) => [
-                                novoComentario,
-                                ...prev,
-                            ]);
-                            setValue("conteudo", "");
-                        }
-                    })}
-                >
+                <Form onSubmit={handleSubmit(data => comentarPostagem(data.conteudo))}>
                     <div className="d-flex align-items-center gap-2">
                         <Form.Control
                             size="sm"

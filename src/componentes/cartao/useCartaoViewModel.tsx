@@ -3,46 +3,66 @@ import { useAutenticacao } from "../../contextos/useAutenticacao";
 import { ComentariosService } from "../../servicos/modeloComentario";
 import { CurtidasService } from "../../servicos/modeloCurtidas";
 import { IComentario } from "../../interfaces/IComentario";
+import { useState } from "react";
 
+interface UseCartaoParams { curtidas: number; comentarios: IComentario[]; postagemID: number; }
 
-export const useCartaoViewModel = () => {
+export const useCartaoViewModel = ({ curtidas, comentarios, postagemID }: UseCartaoParams) => {
     const { register, handleSubmit, formState: { errors }, setValue } = useForm<IComentario>();
+    const { tokenJWT, informacoesUsuario } = useAutenticacao();
+
+    const [isCurtido, setIsCurtido] = useState(false);
+    const [likes, setLikes] = useState(curtidas);
+    const [listaComentarios, setListaComentarios] = useState<IComentario[]>(comentarios);
 
     const curtidaService = new CurtidasService();
     const comentarioService = new ComentariosService();
 
-    const { tokenJWT, informacoesUsuario } = useAutenticacao();
+    const curtirPostagem = async () => {
+        if (!tokenJWT || isCurtido) return;
 
-    const curtir = async (postagemID: number) => {
-        if (!tokenJWT) return;
-        return await curtidaService.curtir(tokenJWT, postagemID);
-    }
+        await curtidaService.curtir(tokenJWT, postagemID);
+        setIsCurtido(true);
+        setLikes(prev => prev + 1);
+    };
 
-    const descurtir = async (postagemID: number) => {
-        if (!tokenJWT) return;
-        return await curtidaService.descurtir(tokenJWT, postagemID);
-    }
+    const descurtirPostagem = async () => {
+        if (!tokenJWT || !isCurtido) return;
 
-    const comentar = async (postagemID: number, conteudo: string) => {
-        if (!tokenJWT) return;
-        return await comentarioService.cadastrar(tokenJWT, postagemID, conteudo);
-    }
+        await curtidaService.descurtir(tokenJWT, postagemID);
+        setIsCurtido(false);
+        setLikes(prev => Math.max(prev - 1, 0));
+    };
 
-    const descomentar = async (postagemID: number, comentarioID: number) => {
+    const comentarPostagem = async (conteudo: string) => {
         if (!tokenJWT) return;
-        return await comentarioService.deletar(tokenJWT, postagemID, comentarioID);
-    }
+
+        const novoComentario = await comentarioService.cadastrar(
+            tokenJWT,
+            postagemID,
+            conteudo
+        );
+
+        if (novoComentario) {
+            setListaComentarios(prev => [novoComentario, ...prev]);
+            setValue("conteudo", "");
+        }
+    };
+
+    
 
     return {
-        curtir,
-        descurtir,
-        comentar,
-        descomentar, 
-        
+        curtirPostagem,
+        descurtirPostagem,
+        comentarPostagem,
+        isCurtido,
+        setIsCurtido,
         register,
         handleSubmit,
         errors,
         setValue,
-        informacoesUsuario
+        informacoesUsuario,
+        likes,
+        listaComentarios,
     }
 }

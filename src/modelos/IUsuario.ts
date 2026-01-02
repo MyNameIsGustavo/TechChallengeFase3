@@ -1,6 +1,7 @@
 export interface IUsuario {
     id: number;
     nomeCompleto: string;
+    caminhoImagem?: FileList | string;
     telefone: string;
     email: string;
     senha: string;
@@ -14,4 +15,14 @@ export interface IUsuarioEdicao {
     telefone: string;
     papelUsuarioID: number;
     senha?: string;
+    caminhoImagem?: FileList | string;
+}
+
+export interface IUsuarioAlteracao {
+    id?: number;
+    nomeCompleto: string;
+    caminhoImagem?: FileList | string;
+    telefone: string;
+    senha?: string | undefined;
+    papelUsuarioID?: number;
 }
