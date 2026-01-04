@@ -85,7 +85,7 @@ Outra diferença marcante está no data binding. No MVC, o fluxo de atualizaçã
  
 4. View: Fluxo de apresentação de recepção de dados após contato com o usuário através de componentes visuais ou UI.
 
-(Print-screen de uma imagem de exemplo).
+<img width="608" height="250" alt="mvvm-fluxo" src="https://github.com/user-attachments/assets/36d027f8-0318-4e55-a526-1fe508016438" />
 
 ### Pipeline da aplicação - Chronos.
 1. Desenvolvimento local: Cada feature é desenvolvida isoladamente.
@@ -104,7 +104,7 @@ Outra diferença marcante está no data binding. No MVC, o fluxo de atualizaçã
     - Cria a imagem Docker e faz push para o DockerHub.
     - Deploy no Render: A aplicação é implantada no serviço Render a partir do repositório no GitHub.
 
-(Print-screen de uma imagem de exemplo).
+<img width="1663" height="586" alt="macro_fluxo" src="https://github.com/user-attachments/assets/2d93b592-e9b4-4462-86a7-68878116487e" />
 
 ## Prova de conceito.
 Conforme os requisitos técnicos e funcionais do documento formalizado do Tech Challenge da fase 3 do curso de Full Stack Development denominado "6FSDT - Fase 3 - Tech challenge" disponibilizado na plataforma da FIAP, a entrega final do projeto engloba todos os requisitos solicitados nesta fase foram entregues, sendo eles citados acima no tópico 3 (Requisitos Técnicos) e 4 (Requisitos Funcionais) do súmario. A seguir, são relacionados cada tópico com sua respectiva entrega em forma de evidência.
@@ -113,26 +113,21 @@ Conforme os requisitos técnicos e funcionais do documento formalizado do Tech C
 1. *Desenvolvimento em React*:
   - Utilizar React para desenvolver a interface gráfica.  
   - Utilização de hooks e componentes funcionais.  
-
-(Print-screen da tela)
+    - Requisitos funcionais entregues validação da utilização/criação de hooks e contextos através do Context API pode ser validado via arquivo src/contextos/useAutenticacao.tsx
 
 2. *Estilização e responsividade*:
   - Utilizar Styled Components ou outro método de estilização.  
   - Garantir que a aplicação seja responsiva, funcionando bem em dispositivos móveis e desktops.  
-
-(Print-screen da tela)
+    - Requisito funcional entregue e validado via dispositivos disponiveis no browser através do DevTools. 
 
 3. *Integração com back-end*:
-    - Exibir uma lista de todas as postagens, com opções para editar e excluir cada post.
-    - Botões para editar e excluir postagens específicas.
-
-(Print-screen da tela)
+  - Exibir uma lista de todas as postagens, com opções para editar e excluir cada post.
+  - Botões para editar e excluir postagens específicas.
+      - Requisito técnico entregue conforme pré-requisito desenvolvido na fase anterior.
 
 4. *Documentação*:
   - Documentação técnica detalhada do front-end no README do repositório, incluindo setup inicial, arquitetura da aplicação e guia de uso. 
-
-(Print-screen da tela)
-
+    - Documentação entregue via repositório que pode ser acessado via link: https://github.com/MyNameIsGustavo/TechChallengeFase3
 
 ### Requisitos funcionais
 1. *Página principal (Lista de posts)*:
@@ -140,67 +135,63 @@ Conforme os requisitos técnicos e funcionais do documento formalizado do Tech C
     - Cada item da lista deve mostrar o título, autor e uma breve descrição do post.
     - Incluir um campo de busca para filtrar posts por palavras-chave.
 
-(Print-screen da tela)
+<img width="1915" height="992" alt="listagem_postagem" src="https://github.com/user-attachments/assets/9ba1b256-5957-4a66-851c-dbcc3bcf1d1e" />
 
 2. *Página de leitura de post*:
     - Exibir o conteúdo completo de um post selecionado.
     - Permitir comentários nos posts (opcional).
 
-(Print-screen da tela)
+<img width="1910" height="987" alt="listagemDetalhe" src="https://github.com/user-attachments/assets/6324f81a-6b7d-45f2-ae4e-01743d7311bd" />
 
 3. *Página de criação de postagens*:
     - Formulário para que docentes possam criar postagens.
     - Campos para título, conteúdo e autor.
     - Botão para enviar o post ao servidor.
 
-(Print-screen da tela)
+<img width="1908" height="982" alt="cadastro_postagem" src="https://github.com/user-attachments/assets/80707019-64af-473c-93f2-f3fe7f13d6b5" />
 
 4. *Página de edição de postagens*:
     - Formulário para que os(as) professores(as) possam editar postagens existentes.
     - Carregar os dados atuais do post para edição.
     - Botão para salvar as alterações.
 
-(Print-screen da tela)
+<img width="1905" height="978" alt="edicao_postagem" src="https://github.com/user-attachments/assets/30a4b5eb-3323-4de3-9433-088d9db703eb" />
 
 5. *Página administrativa*:
     - Exibir uma lista de todas as postagens, com opções para editar e excluir cada post.
     - Botões para editar e excluir postagens específicas.
 
-(Print-screen da tela)
+<img width="1911" height="677" alt="listagem_adm_postagens" src="https://github.com/user-attachments/assets/7ee47064-fddd-4bda-bd3d-81062b20ca1c" />
 
 6. *Autenticação e autorização*:
     - Implementar login para professores.
     - Garantir que apenas usuários autenticados possam acessar as páginas de criação, edição e administração de postagens.
 
-(Print-screen da tela)
+<img width="1913" height="987" alt="Login" src="https://github.com/user-attachments/assets/992d47c3-e940-4c68-9bf0-c935aa3c86c7" />
 
-#### Interfaces gráficas de postagens.
-- Página principal (Lista de posts)  
-  - Exibir uma lista de todos os posts disponíveis.
-  - Cada item da lista deve mostrar o título, autor e uma breve descrição do post.
-  - Incluir um campo de busca para filtrar posts por palavras-chave.
-
-- Página de leitura de post  
-  -  Exibir o conteúdo completo de um post selecionado.
-  - Permitir comentários nos posts (opcional).
-
-- Página de criação de postagens
-  - Formulário para que docentes possam criar postagens.
-  - Campos para título, conteúdo e autor.
-  - Botão para enviar o post ao servidor.
-
-- Página de edição de postagens
-  - Formulário para que os(as) professores(as) possam editar postagens existentes.
-  - Carregar os dados atuais do post para edição.
-  - Botão para salvar as alterações.
-
-- Página administrativa
-  - Exibir uma lista de todas as postagens, com opções para editar e excluir cada post.
-  - Botões para editar e excluir postagens específicas.
+7. *Alteração de informações de usuários (Bônus)*:
+    - O usuário deve alteração suas próprias informações.
   
-- Autenticação e autorização
-  - Implementar login para professores.
-  - Garantir que apenas usuários autenticados possam acessar as páginas de criação, edição e administração de postagens.
+<img width="1916" height="940" alt="Alteracao_usuario" src="https://github.com/user-attachments/assets/a829e209-454c-42fd-9122-4140345d0f24" />
+
+7. *Listagem de usuários cadastrados (Bônus)*:
+    - Página administrativa para listagem de usuários.
+
+<img width="1911" height="397" alt="listagem_usuarios" src="https://github.com/user-attachments/assets/c8d43c16-7375-4634-86cc-d20fe5458754" />
+
+8. *Cadastro de usuários (Bônus)*:
+    - Usuários administrativos devem poder cadastrar novos usuários.
+<img width="1912" height="626" alt="cadastro_usuario" src="https://github.com/user-attachments/assets/0c842778-b186-47ef-983c-c6cb855a6753" />
+
+9. *Edição de usuários (Bônus)*:
+    - Usuários administrativos devem poder editar usuários.
+
+<img width="1912" height="610" alt="edicao_usuario" src="https://github.com/user-attachments/assets/42679c26-c5f4-48e5-ae19-9377d59869ba" />
+
+10. *Dashboard (Bônus)*:
+    - Usuários administrativos devem visualizar um dashboard simples sobre o sistema.
+
+<img width="1908" height="982" alt="dashboard" src="https://github.com/user-attachments/assets/d06cbc22-a04d-44b5-b337-e1f1ee1a7850" />
 
 ## Configuração de ambiente.
 Recomenda-se que os pré-requisitos de instalação de tecnologia em seu ambiente de execução sejam os seguintes, listados abaixo. Após verificar as tecnologicas instaladas, siga o procedimento em seguida para inicializar o projeto.
@@ -211,17 +202,19 @@ Recomenda-se que os pré-requisitos de instalação de tecnologia em seu ambient
 
 1. Clonar o repositório disponível no GitHub através do link: https://github.com/MyNameIsGustavo/TechChallengeFase3.git
 
-2. 
+2. Clonar o repositório da fase anterior que se refere ao back-end disponível no GitHub através do link: https://github.com/MyNameIsGustavo?tab=repositories
+
+3. Verificar as instruções de setup inicial disponível no arquivo README.md conforme avaliado e validado na fase anterior.
 
 4. Instalar o docker desktop em seu ambiente local através da URL: https://docs.docker.com/desktop/setup/install/windows-install/
 
 5. Para replicação completa do ambiente no qual foi desenvolvido o projeto, instale o WSL com a distribuição Ubuntu. Para mais instruções siga está documentação oficial distribuida pela Microsoft: https://learn.microsoft.com/pt-br/windows/wsl/install
 
-6. 
+6. Criar o arquivo .env.development com as respectivas informações disponíveis no .env.exemplo para replicação em ambiente local.
 
-7. 
+7. Subir o ambiente docker do back-end através do seguinte comando: docker compose -f docker-compose-dev.yaml --env.file .env.local up
 
-8. 
+8. Subir o ambiente docker do front-end através do seguinte comando: docker compose -f docker-compose-dev.yaml --env.file .env.development up
 
 ## Estrutura da aplicação
 
