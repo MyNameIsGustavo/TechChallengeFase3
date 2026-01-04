@@ -245,71 +245,87 @@ Recomenda-se que os pré-requisitos de instalação de tecnologia em seu ambient
 - Caminho: src/componentes
 - Responsabilidade: Armazenar o códigos-fonte de componentes React do projeto.
 
-6. contexto
+6. conexoes
+- Caminho: src/conexoes
+- Responsabilidade: Define a URL base de requisição da API desenvolvida na fase 02 da pós-tech da FIAP.
+
+7. config
+- Caminho: src/config
+- Responsabilidade: Define a configuração da biblioteca do Chart.js utilizada para criação do dashboard.
+
+8. contexto
 - Caminho: src/contexto
 - Responsabilidade: Armazenar os contextos do projeto React de front-end através da Context API nativo.
 
-7. interfaces
+9. enums
+- Caminho: src/enums
+- Responsabilidade: Define as enums utilizadas para categorizar os papéis do sistema.
+
+8. interfaces
 - Caminho: src/interfaces
 - Responsabilidade: Armazenar as interfaces do projeto front-end.
 
-8. modelos
+9. modelos
 - Caminho: src/modelos
 - Responsabilidade: Caracterizar de forma computacional e padronizada as entidades do sistema front-end através de solicitações para o back-end.
 
-9. rotas
+10. rotas
 - Caminho: src/rotas
 - Responsabilidade: Gerenciar o roteamento das telas da aplicação front-end do projeto.
 
-10. servicos
+11. servicos
 - Caminho: src/servicos
 - Responsabilidade: Realizar de forma modular a conexão com o serviço back-end do projeto.
 
-11. bootstrap.d.ts
+12. bootstrap.d.ts
 - Caminho: src/bootstrap.d.ts
 - Responsabilidade: Declarar de módulo explicito o módulo de estilização do Bootstap.
 
-12. index.css
+13. index.css
 - Caminho: src/index.css
 - Responsabilidade: Centralizar as estilizações padrões do projeto front-end através de CSS.
 
-13. index.tsx
+14. index.tsx
 - Caminho: src/index.tsx
 - Responsabilidade: Centralizar os módulos da aplicação do projeto front-end.
 
-14. .env.development.local
-- Caminho: .env.development.local
+15. .env.development
+- Caminho: .env.development
 - Responsabilidade: Variáveis de ambiente de desenvolvimento do projeto front-end.
 
-15. .gitignore
+16. .env.production
+- Caminho: .env.production
+- Responsabilidade: Variáveis de ambiente de produção do projeto front-end.
+
+17. .gitignore
 - Caminho: .gitignore
 - Responsabilidade: Arquivo do git para remover arquivos do versionamento de código do projeto front-end.
 
-16. docker-compose.dev.yaml
+18. docker-compose.dev.yaml
 - Arquivo: docker-compose.dev.yaml
 - Responsabilidade: Orquestração de containers da aplicação de desenvolvimento.
 
-17. docker-compose.prod.yaml
+19. docker-compose.prod.yaml
 - Arquivo: docker-compose.prod.yaml
 - Responsabilidade: Orquestração de containers da aplicação de produção.
 
-18. dockerfile
+20. dockerfile
 - Arquivo: dockerfile
 - Responsabilidade: Arquivo de entrada para container Docker.
 
-19. package.json
+21. package.json
 - Arquivo: package.json
 - Responsabilidade: Gerenciamento de dependências e scripts
 
-20. package-lock.json
+22. package-lock.json
 - Caminho: package-lock.json
 - Responsabilidade: Registro das versões instaladas
 
-21. README.md
+23. README.md
 - Caminho: README.md
 - Responsabilidade: Documentação do projeto front-end.
 
-22. tsconfig.json
+24. tsconfig.json
 - Caminho: tsconfig.json
 - Responsabilidade: Configuração do TypeScript.
 
