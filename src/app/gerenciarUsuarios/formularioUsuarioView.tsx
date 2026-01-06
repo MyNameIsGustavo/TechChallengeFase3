@@ -79,10 +79,7 @@ export const FormularioUsuario = () => {
                         <Col md={6}>
                             <Form.Group controlId="papelUsuarioID">
                                 <Form.Label>Papel do usuário:</Form.Label>
-                                <Form.Select
-                                    {...register("papelUsuarioID", { valueAsNumber: true })}
-                                    disabled={ehEdicao ? true : false}
-                                >
+                                <Form.Select{...register("papelUsuarioID", { valueAsNumber: true })}>
                                     <option value={1}>Docente</option>
                                     <option value={2}>Estudante</option>
                                     <option value={3}>Suporte</option>

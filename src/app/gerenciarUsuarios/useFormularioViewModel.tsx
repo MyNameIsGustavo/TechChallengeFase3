@@ -21,8 +21,8 @@ export const useFormularioUsuarioViewModel = () => {
             exibe: true,
             titulo: "Confirmar ação",
             mensagem: ehEdicao
-                ? "Deseja realmente atualizar esta usuário?"
-                : "Deseja realmente cadastrar esta usuário?",
+                ? "Deseja realmente atualizar este usuário?"
+                : "Deseja realmente cadastrar este usuário?",
             onConfirm: async () => {
                 setAlerta((prev) => ({ ...prev, show: false }));
                 if (ehEdicao) {
@@ -49,6 +49,9 @@ export const useFormularioUsuarioViewModel = () => {
 
         const dadosParaEnviar = { ...dadosFormulario };
         if (!dadosParaEnviar.senha || dadosParaEnviar.senha.trim() === "") {delete dadosParaEnviar.senha;}
+
+        console.log(dadosParaEnviar)
+
         try {
             if (await usuarioServico.editar(tokenJWT, dadosParaEnviar, editarObjeto.id))vaiParaGerenciarUsuarios();
         } catch {
@@ -62,6 +65,7 @@ export const useFormularioUsuarioViewModel = () => {
             setValue("telefone", editarObjeto.telefone);
             setValue("email", editarObjeto.email);
             setValue("papelUsuarioID", editarObjeto.papelUsuarioID);
+            setValue("caminhoImagem", editarObjeto.caminhoImagem);
         }
     }, [ehEdicao, editarObjeto, setValue]);
 
