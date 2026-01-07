@@ -331,9 +331,9 @@ Utilizando o back-end desenvolvido previamente, esta etapa concentrou-se na cria
 
 As tarefas foram organizadas com base nas experiências adquiridas nos projetos das Fases 01 e 02, iniciando pela estruturação da documentação, definição da arquitetura, construção da aplicação e, somente depois, pelo desenvolvimento do código-fonte.
 
-O projeto foi construído tanto para rodar localmente para execução de testes e validações de novas features quanto em produção através do Render para a disponibilização da aplicação para usuários. Destaco ainda que o Render possui planos de serviços gratuitos por curtos períodos de tempo e foi considerado para este projeto que a aplicação suprisse esta linha de serviços. Este sem dúvida, foi o ponto crucial da etapa de tempo de desenvolvimento do projeto. O banco de dados PostgreSQL utilizado, por exemplo, ficará disponível em produção até o dia {DATA} conforme alerta exibido na plataforma e anexado neste documento como evidência.
+O projeto foi construído tanto para rodar localmente para execução de testes e validações de novas features quanto em produção através do Render para a disponibilização da aplicação para usuários. Destaco ainda que o Render possui planos de serviços gratuitos por curtos períodos de tempo e foi considerado para este projeto que a aplicação suprisse esta linha de serviços. Este sem dúvida, foi o ponto crucial da etapa de tempo de desenvolvimento do projeto. O banco de dados PostgreSQL utilizado, por exemplo, ficará disponível em produção até o dia 05/02/2026 conforme alerta exibido na plataforma e anexado neste documento como evidência.
 
-(Print-screen do render)
+<img width="1905" height="977" alt="Captura de tela 2026-01-07 201559" src="https://github.com/user-attachments/assets/7367e38b-19aa-4355-88dc-e17ad16ffa48" />
 
 A frequência de esforço empregado para o desenvolvimento das features foram diárias e contínuas para que fosse honrado, primeiramente, os requisitos técnicos e funcionais e posteriormente adicionado novas tecnologias considerando ainda as questões do prazo de desenvolvimento citado acima.
 
