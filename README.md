@@ -1,7 +1,7 @@
 # Chronos - Projeto
 
 ## Sumário
-1. Membro do Grupo 52 
+1. Membro do Grupo 3 
 2. Definição do Projeto  
 3. Requisitos Técnicos 
 4. Requisitos Funcionais 
@@ -15,7 +15,7 @@
 12. Bônus
 14. Conclusão
 
-## Membro do Grupo 52
+## Membro do Grupo 3
 - Gustavo Rocha - RM365401
 
 ## Definição do Projeto
@@ -357,7 +357,7 @@ Todas as tecnologias, ferramentas e padrões de arquitetura utilizados neste pro
 ## Entregas
 
 - *Apresentação em vídeo gravado*  
-    - Conforme procedimento validado na fase 01 da pós-tech, o vídeo de apresentação gravado foi disponibilizado na plataforma Youtube para acesso irrestrito dos professores e avaliadores. O vídeo foi gravado com o intuito de apresentar apenas o essencial do projeto para que não ficasse uma apresentação muita longa, sendo complementar com a documentação do projeto. O vídeo pode ser acessado através da seguinte URL: 
+    - Conforme procedimento validado na fase 01 da pós-tech, o vídeo de apresentação gravado foi disponibilizado na plataforma Youtube para acesso irrestrito dos professores e avaliadores. O vídeo foi gravado com o intuito de apresentar apenas o essencial do projeto para que não ficasse uma apresentação muita longa, sendo complementar com a documentação do projeto. O vídeo pode ser acessado através da seguinte URL: https://youtu.be/FdbcXmu90Z0
 
 - *Código-fonte do projeto*  
     - O código-fonte e a documentação está disponibilizado na plataforma GitHub no repositório do projeto e pode ser acessado através da URL: https://github.com/MyNameIsGustavo/TechChallengeFase3
@@ -365,7 +365,7 @@ Todas as tecnologias, ferramentas e padrões de arquitetura utilizados neste pro
     - Além disso, também é possível acessar apenas a imagem de produção do Docker do projeto através do DockerHub na seguinte URL: https://hub.docker.com/repository/docker/grmaia/chronosfrontend/general
 
 - *Arquivos utilizados na apresentação*  
-    - Todos os arquivos utilizados na apresentação do vídeo serão entregues em forma de evidência neste documento "README.md" do projeto. Durante o processo da apresentação foi criado slides de exemplicação do conteúdo e, está evidência, também será entregue e disponibilizada através da seguinte URL: 
+    - Todos os arquivos utilizados na apresentação do vídeo serão entregues em forma de evidência neste documento "README.md" do projeto. Durante o processo da apresentação foi criado slides de exemplicação do conteúdo e, está evidência, também será entregue e disponibilizada através da seguinte URL: https://gamma.app/docs/Chronos-Fase-03-qua1xhjydv4w8rn
 
 ## Bônus
 O Tech Challenge desta fase foi identilizado, primeiramente, para entrega dos requisitos obrigatórios da fase. Posteriormente, foi incrementado uma nova etapa para além de entregar todas os requisitos técnicos e funcionais solicitados na terceira etapa da pós-tech da FIAP, também foi entregue features adicionais que já haviam sido complementadas nas fases anteriores. Nesta etapa, foram entregues mais 11 endpoints, sendo eles:
